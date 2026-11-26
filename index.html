@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>DynoCo einrichten</title>
+    <style>
+      :root {
+        --accent: #2cc7c5;
+        --petrol: #0f7f8c;
+        --petrol-dark: #0b6672;
+        --ink: #111827;
+        --muted: #5b6472;
+        --surface: #f5f7fa;
+        --line: #e3e8ef;
+        --line-strong: #cbd3de;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, Helvetica, Arial,
+          sans-serif;
+        color: var(--ink);
+        background: #0e2a4f linear-gradient(180deg, #06101f 0%, #0b1f3a 55%, #0e2a4f 100%) no-repeat;
+        line-height: 1.5;
+      }
+      .wrap {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 32px 16px 64px;
+      }
+      .logo {
+        text-align: center;
+        color: #fff;
+        font-size: 34px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin: 8px 0 4px;
+      }
+      .logo span {
+        color: var(--accent);
+      }
+      .tagline {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.75);
+        margin: 0 0 24px;
+      }
+      .card {
+        background: #fff;
+        border-radius: 18px;
+        padding: 28px 24px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        margin-bottom: 20px;
+      }
+      h1,
+      h2,
+      h3 {
+        line-height: 1.25;
+        margin: 0 0 8px;
+      }
+      h1 {
+        font-size: 22px;
+      }
+      h2 {
+        font-size: 18px;
+      }
+      h3 {
+        font-size: 15px;
+      }
+      p {
+        margin: 0 0 12px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .tabs {
+        display: flex;
+        gap: 8px;
+        margin: 16px 0 20px;
+        flex-wrap: wrap;
+      }
+      .tab {
+        border: 1px solid var(--line-strong);
+        background: #fff;
+        border-radius: 999px;
+        padding: 8px 16px;
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+        color: var(--ink);
+      }
+      .tab[aria-selected='true'] {
+        background: var(--petrol);
+        border-color: var(--petrol);
+        color: #fff;
+      }
+      .choice {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 18px 18px 8px;
+        margin-bottom: 14px;
+      }
+      ol.steps {
+        padding-left: 22px;
+        margin: 8px 0 12px;
+      }
+      ol.steps li {
+        margin-bottom: 10px;
+      }
+      .command {
+        display: flex;
+        gap: 8px;
+        align-items: stretch;
+        flex-wrap: wrap;
+        margin: 6px 0;
+      }
+      .command code {
+        flex: 1 1 280px;
+        display: block;
+        background: var(--surface);
+        border: 1px solid var(--line-strong);
+        border-radius: 10px;
+        padding: 10px 12px;
+        font-size: 13px;
+        overflow-wrap: anywhere;
+        user-select: all;
+      }
+      .button {
+        display: inline-block;
+        border: 0;
+        border-radius: 999px;
+        padding: 10px 18px;
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+        background: var(--petrol);
+        color: #fff;
+        text-decoration: none;
+      }
+      .button:hover {
+        background: var(--petrol-dark);
+      }
+      .button.secondary {
+        background: #fff;
+        color: var(--petrol);
+        border: 1px solid var(--petrol);
+      }
+      kbd {
+        background: var(--surface);
+        border: 1px solid var(--line-strong);
+        border-bottom-width: 2px;
+        border-radius: 6px;
+        padding: 0 6px;
+        font-family: inherit;
+        font-size: 13px;
+      }
+      .note {
+        background: #e3f8f7;
+        border-radius: 12px;
+        padding: 10px 14px;
+        font-size: 14px;
+        margin: 8px 0 12px;
+      }
+      .notes {
+        white-space: pre-wrap;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px 14px;
+        font-size: 14px;
+        max-height: 360px;
+        overflow: auto;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      footer {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 13px;
+      }
+      footer a {
+        color: rgba(255, 255, 255, 0.85);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="logo">Dyno<span>Co</span></div>
+      <p class="tagline">Akquise und Marketing-Planung – hier einrichten</p>
+
+      <main class="card">
+        <h1>DynoCo auf diesem Rechner einrichten</h1>
+        <p class="muted">
+          Fassung <strong id="version">…</strong>. Dauert beim ersten Rechner etwa 15 Minuten,
+          danach je Rechner 2 Minuten. Deine Daten bleiben auf euren Rechnern.
+        </p>
+
+        <div class="tabs" role="tablist" aria-label="Betriebssystem">
+          <button class="tab" role="tab" id="tab-mac" aria-controls="mac" aria-selected="true">
+            Mac
+          </button>
+          <button
+            class="tab"
+            role="tab"
+            id="tab-windows"
+            aria-controls="windows"
+            aria-selected="false"
+          >
+            Windows
+          </button>
+        </div>
+
+        <section id="mac" role="tabpanel" aria-labelledby="tab-mac">
+          <div class="choice">
+            <h2>Erster Rechner – hier kommt die Datenbank hin</h2>
+            <p class="muted">
+              Nur einmal, auf dem Mac, der im Büro an bleibt. Er braucht Internet und ein
+              Administrator-Konto (das Passwort, mit dem du am Mac Programme installierst).
+            </p>
+            <ol class="steps">
+              <li>
+                Diese Zeile kopieren:
+                <div class="command">
+                  <code id="cmd-first"
+                    >bash &lt;(curl -fsSL https://thegamerbeni.github.io/DYNOCO-UPDATER/einrichten.sh)</code
+                  >
+                  <button class="button" data-copy="cmd-first">Kopieren</button>
+                </div>
+              </li>
+              <li>
+                Das Programm <strong>Terminal</strong> öffnen: <kbd>⌘</kbd> + <kbd>Leertaste</kbd>
+                drücken, <em>Terminal</em> eintippen, <kbd>Enter</kbd>.
+              </li>
+              <li>
+                Im Terminal einfügen (<kbd>⌘</kbd> + <kbd>V</kbd>) und <kbd>Enter</kbd> drücken.
+              </li>
+              <li>
+                Fragt das Terminal nach dem <strong>Passwort</strong>: das Mac-Passwort eintippen
+                und <kbd>Enter</kbd>. Beim Tippen erscheinen keine Zeichen – das ist richtig so.
+              </li>
+              <li>
+                Zeigt <strong>Docker</strong> ein Fenster: Bedingungen annehmen, Anmeldung
+                überspringen. Dann warten – das Terminal sagt, was gerade passiert.
+              </li>
+              <li>
+                DynoCo öffnet sich von selbst. Dort <strong>„Erster Rechner“</strong> wählen und
+                den Schritten folgen: Datenbank einrichten, Inhaber-Konto anlegen, Firmenliste
+                einlesen.
+              </li>
+            </ol>
+            <p class="note">
+              Warum eine Zeile im Terminal? So installiert sich DynoCo ohne Warnungen des Macs –
+              und lädt dabei automatisch Docker Desktop, das die Datenbank braucht. Die Zeile darf
+              man ohne Sorge noch einmal ausführen: Bestehende Daten bleiben erhalten.
+            </p>
+          </div>
+
+          <div class="choice">
+            <h2>Weiterer Mac – DynoCo läuft schon im Büro</h2>
+            <ol class="steps">
+              <li>
+                Auf dem ersten Rechner in DynoCo: <strong>Verwaltung → Datenbank</strong> →
+                <strong>„Verbindungscode für andere Rechner kopieren“</strong>, zum Beispiel per
+                Mail an dich schicken.
+              </li>
+              <li>
+                Auf dem weiteren Mac diese Zeile kopieren und wie oben im Terminal einfügen:
+                <div class="command">
+                  <code id="cmd-other"
+                    >bash &lt;(curl -fsSL https://thegamerbeni.github.io/DYNOCO-UPDATER/einrichten.sh)
+                    weiterer-rechner</code
+                  >
+                  <button class="button" data-copy="cmd-other">Kopieren</button>
+                </div>
+              </li>
+              <li>
+                DynoCo öffnet sich. <strong>„Weiterer Rechner“</strong> wählen, den
+                Verbindungscode einfügen, mit dem Zugangsschlüssel ein Konto anlegen (den
+                Schlüssel erstellt ein Inhaber unter Verwaltung → Zugangsschlüssel).
+              </li>
+            </ol>
+            <p class="muted">Beide Rechner müssen im selben Netz sein (z. B. im Büro-WLAN).</p>
+          </div>
+        </section>
+
+        <section id="windows" role="tabpanel" aria-labelledby="tab-windows" hidden>
+          <div class="choice">
+            <h2>Windows-Rechner – DynoCo läuft schon im Büro</h2>
+            <p class="muted">
+              Die Datenbank läuft auf einem Mac (siehe Reiter „Mac“). Windows-Rechner verbinden
+              sich damit.
+            </p>
+            <ol class="steps">
+              <li>
+                <a class="button" id="windows-download" href="#">DynoCo für Windows laden</a>
+              </li>
+              <li>
+                Die geladene Datei öffnen. Zeigt Windows <em>„Der Computer wurde durch Windows
+                geschützt“</em>: auf <strong>„Weitere Informationen“</strong> klicken, dann auf
+                <strong>„Trotzdem ausführen“</strong>. (Die Warnung kommt, weil DynoCo keine
+                gekaufte Signatur hat.)
+              </li>
+              <li>
+                DynoCo installiert sich und öffnet sich. <strong>„Weiterer Rechner“</strong>
+                wählen, den Verbindungscode vom ersten Rechner einfügen und mit dem
+                Zugangsschlüssel ein Konto anlegen.
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <h2>Updates</h2>
+        <p class="muted">
+          Einmal eingerichtet, meldet DynoCo neue Fassungen selbst. Ein Klick auf
+          <strong>„Jetzt aktualisieren“</strong> genügt.
+        </p>
+        <p>
+          <a class="button secondary" href="einrichtungsguide.pdf">Anleitung als PDF (1 Seite)</a>
+        </p>
+      </main>
+
+      <section class="card" aria-labelledby="neu">
+        <h2 id="neu">Was ist neu in Fassung <span id="version2">…</span>?</h2>
+        <div class="notes" id="notes">Wird geladen …</div>
+        <p class="muted" style="margin-top: 12px">
+          Alle Fassungen:
+          <a href="https://github.com/TheGamerBeni/DYNOCO-UPDATER/releases">GitHub</a>
+        </p>
+      </section>
+
+      <footer>DynoCo – internes Arbeitsprogramm</footer>
+    </div>
+
+    <script>
+      // Reiter: Windows-Rechner bekommen gleich „Windows“ zu sehen.
+      const tabs = { mac: document.getElementById('tab-mac'), windows: document.getElementById('tab-windows') };
+      function show(which) {
+        for (const [name, tab] of Object.entries(tabs)) {
+          const active = name === which;
+          tab.setAttribute('aria-selected', String(active));
+          document.getElementById(name).hidden = !active;
+        }
+      }
+      tabs.mac.addEventListener('click', () => show('mac'));
+      tabs.windows.addEventListener('click', () => show('windows'));
+      if (/Windows/i.test(navigator.userAgent)) show('windows');
+
+      // Kopieren-Knöpfe.
+      for (const button of document.querySelectorAll('[data-copy]')) {
+        button.addEventListener('click', async () => {
+          const text = document.getElementById(button.dataset.copy).textContent.replace(/\s+/g, ' ').trim();
+          try {
+            await navigator.clipboard.writeText(text);
+            button.textContent = 'Kopiert';
+          } catch {
+            button.textContent = 'Bitte von Hand markieren';
+          }
+          setTimeout(() => (button.textContent = 'Kopieren'), 3000);
+        });
+      }
+
+      // Neueste Fassung: Nummer, Änderungsbeschreibung, Windows-Datei.
+      const MARKER = '<!-- dynoco-installer -->';
+      fetch('https://api.github.com/repos/TheGamerBeni/DYNOCO-UPDATER/releases/latest', {
+        headers: { Accept: 'application/vnd.github+json' },
+      })
+        .then((response) => (response.ok ? response.json() : Promise.reject(response.status)))
+        .then((release) => {
+          const version = String(release.tag_name || '').replace(/^v/, '');
+          document.getElementById('version').textContent = version;
+          document.getElementById('version2').textContent = version;
+          const body = String(release.body || '');
+          const cut = body.indexOf(MARKER);
+          document.getElementById('notes').textContent = (cut >= 0 ? body.slice(0, cut) : body).trim();
+          const exe = (release.assets || []).find((asset) => /windows-setup\.exe$/.test(asset.name));
+          if (exe) document.getElementById('windows-download').href = exe.browser_download_url;
+        })
+        .catch(() => {
+          document.getElementById('version').textContent = 'aktuell';
+          document.getElementById('version2').textContent = 'aktuell';
+          document.getElementById('notes').textContent =
+            'Konnte gerade nicht geladen werden. Alle Fassungen stehen auf GitHub (Link unten).';
+          document.getElementById('windows-download').href =
+            'https://github.com/TheGamerBeni/DYNOCO-UPDATER/releases/latest';
+        });
+    </script>
+  </body>
+</html>

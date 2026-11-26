@@ -316,6 +316,30 @@
           </div>
         </section>
 
+        <details class="choice" style="padding-bottom: 12px">
+          <summary style="cursor: pointer; font-weight: 600">
+            Für eure IT: Datenbank auf einem eigenen Server im Internet
+          </summary>
+          <p class="muted" style="margin-top: 10px">
+            Wenn Leute auch von zu Hause arbeiten: Die Datenbank läuft dann auf eurem eigenen oder
+            gemieteten Linux-Server (Ubuntu 24.04), alle Rechner verbinden sich verschlüsselt. Die
+            Daten liegen nur auf diesem Server. Als root auf dem Server ausführen, am Ende eure
+            Internetadresse:
+          </p>
+          <div class="command">
+            <code id="cmd-server"
+              >bash &lt;(curl -fsSL https://thegamerbeni.github.io/DYNOCO-UPDATER/server.sh)
+              dynoco.eure-firma.de</code
+            >
+            <button class="button" data-copy="cmd-server">Kopieren</button>
+          </div>
+          <p class="muted">
+            Vorher muss die Internetadresse auf den Server zeigen (DNS-Eintrag Typ A). Danach auf
+            allen Rechnern „Weiterer Rechner“ wählen und den Verbindungscode aus der Ausgabe
+            einfügen. Sicherungen und Updates macht der Server selbst.
+          </p>
+        </details>
+
         <h2>Updates</h2>
         <p class="muted">
           Einmal eingerichtet, meldet DynoCo neue Fassungen selbst. Ein Klick auf

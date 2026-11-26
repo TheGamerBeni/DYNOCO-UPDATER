@@ -22,8 +22,7 @@
       body {
         margin: 0;
         font-family:
-          -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, Helvetica, Arial,
-          sans-serif;
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif;
         color: var(--ink);
         background: #0e2a4f linear-gradient(180deg, #06101f 0%, #0b1f3a 55%, #0e2a4f 100%) no-repeat;
         line-height: 1.5;
@@ -228,14 +227,15 @@
                 Diese Zeile kopieren:
                 <div class="command">
                   <code id="cmd-first"
-                    >bash &lt;(curl -fsSL https://thegamerbeni.github.io/DYNOCO-UPDATER/einrichten.sh)</code
+                    >bash &lt;(curl -fsSL
+                    https://thegamerbeni.github.io/DYNOCO-UPDATER/einrichten.sh)</code
                   >
                   <button class="button" data-copy="cmd-first">Kopieren</button>
                 </div>
               </li>
               <li>
-                Das Programm <strong>Terminal</strong> öffnen: <kbd>⌘</kbd> + <kbd>Leertaste</kbd>
-                drücken, <em>Terminal</em> eintippen, <kbd>Enter</kbd>.
+                Das Programm <strong>Terminal</strong> öffnen: <kbd>⌘</kbd> +
+                <kbd>Leertaste</kbd> drücken, <em>Terminal</em> eintippen, <kbd>Enter</kbd>.
               </li>
               <li>
                 Im Terminal einfügen (<kbd>⌘</kbd> + <kbd>V</kbd>) und <kbd>Enter</kbd> drücken.
@@ -249,15 +249,14 @@
                 überspringen. Dann warten – das Terminal sagt, was gerade passiert.
               </li>
               <li>
-                DynoCo öffnet sich von selbst. Dort <strong>„Erster Rechner“</strong> wählen und
-                den Schritten folgen: Datenbank einrichten, Inhaber-Konto anlegen, Firmenliste
-                einlesen.
+                DynoCo öffnet sich von selbst. Dort <strong>„Erster Rechner“</strong> wählen und den
+                Schritten folgen: Datenbank einrichten, Inhaber-Konto anlegen, Firmenliste einlesen.
               </li>
             </ol>
             <p class="note">
-              Warum eine Zeile im Terminal? So installiert sich DynoCo ohne Warnungen des Macs –
-              und lädt dabei automatisch Docker Desktop, das die Datenbank braucht. Die Zeile darf
-              man ohne Sorge noch einmal ausführen: Bestehende Daten bleiben erhalten.
+              Warum eine Zeile im Terminal? So installiert sich DynoCo ohne Warnungen des Macs – und
+              lädt dabei automatisch Docker Desktop, das die Datenbank braucht. Die Zeile darf man
+              ohne Sorge noch einmal ausführen: Bestehende Daten bleiben erhalten.
             </p>
           </div>
 
@@ -273,16 +272,17 @@
                 Auf dem weiteren Mac diese Zeile kopieren und wie oben im Terminal einfügen:
                 <div class="command">
                   <code id="cmd-other"
-                    >bash &lt;(curl -fsSL https://thegamerbeni.github.io/DYNOCO-UPDATER/einrichten.sh)
+                    >bash &lt;(curl -fsSL
+                    https://thegamerbeni.github.io/DYNOCO-UPDATER/einrichten.sh)
                     weiterer-rechner</code
                   >
                   <button class="button" data-copy="cmd-other">Kopieren</button>
                 </div>
               </li>
               <li>
-                DynoCo öffnet sich. <strong>„Weiterer Rechner“</strong> wählen, den
-                Verbindungscode einfügen, mit dem Zugangsschlüssel ein Konto anlegen (den
-                Schlüssel erstellt ein Inhaber unter Verwaltung → Zugangsschlüssel).
+                DynoCo öffnet sich. <strong>„Weiterer Rechner“</strong> wählen, den Verbindungscode
+                einfügen, mit dem Zugangsschlüssel ein Konto anlegen (den Schlüssel erstellt ein
+                Inhaber unter Verwaltung → Zugangsschlüssel).
               </li>
             </ol>
             <p class="muted">Beide Rechner müssen im selben Netz sein (z. B. im Büro-WLAN).</p>
@@ -293,23 +293,24 @@
           <div class="choice">
             <h2>Windows-Rechner – DynoCo läuft schon im Büro</h2>
             <p class="muted">
-              Die Datenbank läuft auf einem Mac (siehe Reiter „Mac“). Windows-Rechner verbinden
-              sich damit.
+              Die Datenbank läuft auf einem Mac (siehe Reiter „Mac“). Windows-Rechner verbinden sich
+              damit.
             </p>
             <ol class="steps">
               <li>
                 <a class="button" id="windows-download" href="#">DynoCo für Windows laden</a>
               </li>
               <li>
-                Die geladene Datei öffnen. Zeigt Windows <em>„Der Computer wurde durch Windows
-                geschützt“</em>: auf <strong>„Weitere Informationen“</strong> klicken, dann auf
+                Die geladene Datei öffnen. Zeigt Windows
+                <em>„Der Computer wurde durch Windows geschützt“</em>: auf
+                <strong>„Weitere Informationen“</strong> klicken, dann auf
                 <strong>„Trotzdem ausführen“</strong>. (Die Warnung kommt, weil DynoCo keine
                 gekaufte Signatur hat.)
               </li>
               <li>
                 DynoCo installiert sich und öffnet sich. <strong>„Weiterer Rechner“</strong>
-                wählen, den Verbindungscode vom ersten Rechner einfügen und mit dem
-                Zugangsschlüssel ein Konto anlegen.
+                wählen, den Verbindungscode vom ersten Rechner einfügen und mit dem Zugangsschlüssel
+                ein Konto anlegen.
               </li>
             </ol>
           </div>
@@ -339,7 +340,10 @@
 
     <script>
       // Reiter: Windows-Rechner bekommen gleich „Windows“ zu sehen.
-      const tabs = { mac: document.getElementById('tab-mac'), windows: document.getElementById('tab-windows') };
+      const tabs = {
+        mac: document.getElementById('tab-mac'),
+        windows: document.getElementById('tab-windows'),
+      };
       function show(which) {
         for (const [name, tab] of Object.entries(tabs)) {
           const active = name === which;
@@ -354,7 +358,10 @@
       // Kopieren-Knöpfe.
       for (const button of document.querySelectorAll('[data-copy]')) {
         button.addEventListener('click', async () => {
-          const text = document.getElementById(button.dataset.copy).textContent.replace(/\s+/g, ' ').trim();
+          const text = document
+            .getElementById(button.dataset.copy)
+            .textContent.replace(/\s+/g, ' ')
+            .trim();
           try {
             await navigator.clipboard.writeText(text);
             button.textContent = 'Kopiert';
@@ -377,8 +384,12 @@
           document.getElementById('version2').textContent = version;
           const body = String(release.body || '');
           const cut = body.indexOf(MARKER);
-          document.getElementById('notes').textContent = (cut >= 0 ? body.slice(0, cut) : body).trim();
-          const exe = (release.assets || []).find((asset) => /windows-setup\.exe$/.test(asset.name));
+          document.getElementById('notes').textContent = (
+            cut >= 0 ? body.slice(0, cut) : body
+          ).trim();
+          const exe = (release.assets || []).find((asset) =>
+            /windows-setup\.exe$/.test(asset.name),
+          );
           if (exe) document.getElementById('windows-download').href = exe.browser_download_url;
         })
         .catch(() => {
